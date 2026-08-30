@@ -1,0 +1,383 @@
+//
+//                                                        ▀▀▀▀▀     ▀▀▀▀▀          ▀▀█▀▀
+//                                                        ▄▀▀▀▄  ▄  ▄▀▀▀▄  ▄  ▄▀▀▀▄  █  ▄▀▀▀▄
+//                                                        █   █  █  █   █  █  █   █  █  █   █
+//                                                         ▀▀▀   █   ▀▀▀   █   ▀▀▀   ▀   ▀▀▀
+//                                                               █      ▄▄▄█▄▄▄    █   █  
+//                                                               ▀      █  █  █     █▄█
+//                                                             ▀▀▀▀▀    █  █  █      ▀
+//                                                                      ▀  ▀  ▀
+//
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define Base        0
+#define Num         1
+#define SymL        2
+#define SymR        3
+#define Nav         4
+#define Fun         5
+#define SAI         6
+
+&sk { quick-release; };
+
+&lt {
+    quick-tap-ms = <175>;
+    flavor = "balanced";
+};
+
+&mt {
+    tapping-term-ms = <170>;
+    flavor = "tap-preferred";
+    quick-tap-ms = <100>;
+};
+
+/ {
+    behaviors {
+        hml: homerow_mods_left {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS_LEFT";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            bindings = <&kp>, <&kp>;
+
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <5 15 26 27 16 6 7 17 28 8 18 29 9 19 30 31 35 36 37 32 33 34>;
+        };
+
+        hmr: homerow_mods_right {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS_RIGHT";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            bindings = <&kp>, <&kp>;
+
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 21 22 23 24 25 32 33 20 34 35 36 37>;
+        };
+
+        hml_und: homerow_mods_left_undecided {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS_LEFT_UNDECIDED";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            bindings = <&kp>, <&kp>;
+
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <5 15 26 27 16 6 7 17 28 8 18 29 9 19 30 31 35 36 37 32 33 34>;
+            hold-while-undecided;
+        };
+
+        mt_und: homerow_mods_undecided {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS_UNDECIDED";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <170>;
+            flavor = "tap-preferred";
+            hold-while-undecided;
+        };
+
+        csz_undo: csz_undo {
+            compatible = "zmk,behavior-mod-morph";
+            label = "CSZ_UNDO";
+            bindings = <&kp LC(Z)>, <&kp LC(Y)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        sk_lt: sk_lt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SK_LT";
+            bindings = <&mo>, <&sk>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <170>;
+            quick-tap-ms = <100>;
+            flavor = "tap-preferred";
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_backspace {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <16 17>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_del_r {
+            bindings = <&kp DELETE>;
+            key-positions = <18 17>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <11 12>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_del_l {
+            bindings = <&kp DELETE>;
+            key-positions = <12 13>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_num_pscrn {
+            bindings = <&kp PRINTSCREEN>;
+            key-positions = <12 11>;
+            layers = <2>;
+        };
+
+        combo_num_mute {
+            bindings = <&kp C_MUTE>;
+            key-positions = <23 22>;
+            layers = <2>;
+        };
+
+        combo_num_pause {
+            bindings = <&kp C_PAUSE>;
+            key-positions = <13 12>;
+            layers = <2>;
+        };
+
+        combo_return_r {
+            bindings = <&kp RETURN>;
+            key-positions = <16 17 18>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_return_l {
+            bindings = <&kp RETURN>;
+            key-positions = <11 12 13>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_plus_num {
+            key-positions = <16 17>;
+            bindings = <&kp KP_PLUS>;
+            layers = <2>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_minus_num {
+            key-positions = <17 18>;
+            bindings = <&kp MINUS>;
+            layers = <2>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_close_parenthesis {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <12 13>;
+            layers = <1>;
+        };
+
+        combo_close_brackets {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <12 11>;
+            layers = <1>;
+        };
+
+        combo_close_braces {
+            bindings = <&kp RIGHT_BRACE>;
+            key-positions = <11 12 13>;
+            layers = <1>;
+        };
+
+        combo_equals {
+            bindings = <&kp EQUAL>;
+            key-positions = <16 17 18>;
+            require-prior-idle-ms = <150>;
+            layers = <2>;
+        };
+
+        combo_less {
+            bindings = <&kp LESS_THAN>;
+            key-positions = <27 28>;
+            require-prior-idle-ms = <150>;
+            layers = <2>;
+        };
+
+        combo_greater {
+            bindings = <&kp GREATER_THAN>;
+            key-positions = <28 29>;
+            require-prior-idle-ms = <150>;
+            layers = <2>;
+        };
+
+        combo_left_bracket {
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <1 2>;
+            require-prior-idle-ms = <150>;
+            layers = <0>;
+        };
+
+        combo_right_bracket {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <2 3>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_right_parenthesis {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <7 8>;
+            require-prior-idle-ms = <150>;
+            layers = <0>;
+        };
+
+        combo_left_parenthesis {
+            bindings = <&kp LEFT_PARENTHESIS>;
+            key-positions = <7 6>;
+            require-prior-idle-ms = <150>;
+            layers = <0>;
+        };
+
+        combo_semicolon {
+            bindings = <&kp SEMICOLON>;
+            key-positions = <27 28>;
+            require-prior-idle-ms = <150>;
+            layers = <0>;
+        };
+
+        combo_colon {
+            bindings = <&kp COLON>;
+            key-positions = <28 29>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_caret {
+            bindings = <&kp CARET>;
+            key-positions = <7 8>;
+            require-prior-idle-ms = <150>;
+            layers = <2>;
+        };
+
+        combo_left_bracket_low {
+            bindings = <&kp LEFT_BRACE>;
+            key-positions = <22 23>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
+        };
+
+        combo_right_brace {
+            bindings = <&kp RIGHT_BRACE>;
+            key-positions = <23 24>;
+            require-prior-idle-ms = <150>;
+            layers = <0>;
+        };
+
+        combo_star {
+            bindings = <&kp LS(ASTERISK)>;
+            key-positions = <6 7>;
+            layers = <2>;
+            require-prior-idle-ms = <150>;
+        };
+    };
+
+    macros {
+        space_num: space_num {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&mo 2 &kp SPACE>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&mo 2 &kp SPACE>;
+
+            label = "SPACE_NUM";
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            label = "BASE";
+            bindings = <
+       &kp Q            &kp W            &kp E                    &kp R                  &kp T      &kp Y         &kp U                &kp I                &kp O            &kp P
+       &hml LEFT_GUI A  &hml LEFT_ALT S  &hml_und LEFT_CONTROL D  &hml_und LEFT_SHIFT F  &kp G      &kp H         &hmr LEFT_SHIFT J    &hmr LEFT_CONTROL K  &hmr LEFT_ALT L  &kp SINGLE_QUOTE
+&none  &kp Z            &kp X            &kp C                    &kp V                  &kp B      &kp N         &kp M                &kp COMMA            &kp PERIOD       &kp MINUS         &none
+                                         &none                    &lt 2 SPACE            &kp TAB    &kp CAPSLOCK  &sk_lt 1 LEFT_SHIFT  &none
+            >;
+        };
+
+        symbol_nav_layer {
+            bindings = <
+       &kp QUESTION     &kp BACKSLASH    &kp PIPE                    &kp RA(SLASH)                &none    &kp INSERT  &kp HOME        &kp PAGE_DOWN      &kp PAGE_UP      &kp END
+       &kp EXCLAMATION  &mt LEFT_ALT AT  &mt LEFT_CONTROL AMPERSAND  &mt LEFT_SHIFT RA(NUMBER_1)  &none    &tog 1      &kp LEFT        &kp DOWN_ARROW     &kp UP_ARROW     &kp RIGHT_ARROW
+&none  &none            &kp GRAVE        &kp TILDE                   &kp DOLLAR                   &none    &none       &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT       &none
+                                         &none                       &trans                       &none    &none       &none           &none
+            >;
+
+            label = "SYMNAV";
+        };
+
+        number_layer {
+            bindings = <
+       &kp END     &kp PG_UP     &kp PG_DN     &kp HOME    &none     &kp HASH   &kp N7        &kp N8  &kp N9  &kp SLASH
+       &csz_undo   &kp LC(X)     &kp LC(C)     &kp LC(V)   &tog 4    &kp DOT    &kp N4        &kp N5  &kp N6  &kp UNDERSCORE
+&none  &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &none     &kp RA(N)  &kp NUMBER_1  &kp N2  &kp N3  &kp UNDER       &none
+                                 &none         &none       &none     &none      &kp NUMBER_0  &none
+            >;
+
+            label = "NUM";
+        };
+
+        function_layer {
+            bindings = <
+       &kp F12           &kp F7           &kp F8               &kp F9             &none             &none  &kp F7             &kp F8               &kp F9           &kp F12
+       &mt LEFT_GUI F11  &mt LEFT_ALT F4  &mt LEFT_CONTROL F5  &mt LEFT_SHIFT F6  &studio_unlock    &none  &mt LEFT_SHIFT F4  &mt LEFT_CONTROL F5  &mt LEFT_ALT F6  &mt LEFT_GUI F11
+&none  &kp F10           &kp F1           &kp F2               &kp F3             &none             &none  &kp F1             &kp F2               &kp F3           &kp F10           &none
+                                          &none                &none              &none             &none  &none              &none
+            >;
+
+            label = "FUN";
+        };
+
+        SAI_layer {
+            bindings = <
+       &trans  &trans              &trans                  &trans                &trans    &trans  &trans  &trans  &trans  &trans
+       &trans  &mt_und LEFT_ALT S  &mt_und LEFT_CONTROL D  &mt_und LEFT_SHIFT F  &trans    &trans  &trans  &trans  &trans  &trans
+&none  &trans  &trans              &trans                  &trans                &trans    &trans  &trans  &trans  &trans  &trans  &none
+                                   &trans                  &space_num            &trans    &trans  &trans  &trans
+            >;
+
+            label = "SAI";
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        num_nav {
+            if-layers = <2 1>;
+            then-layer = <3>;
+        };
+    };
+};

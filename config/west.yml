@@ -53,6 +53,10 @@ manifest:
     - name: zmk-unicode
       path: modules/zmk/unicode
       revision: a1e3d3eed54dea800b5342a251eb3b83eee3b5ec # main (2026-08-18)
+    - name: zmk-rgbled-widget
+      url: https://github.com/caksoylar/zmk-rgbled-widget
+      path: modules/zmk/rgbled-widget
+      revision: main
 
     # Avoid downloading GBs of unused Zephyr modules. Remove this section to
     # restore the default (needed for less common hardware).

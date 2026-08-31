@@ -73,6 +73,7 @@ manifest:
           - lvgl  # imported independently by ZMK
           - mbedtls
           - tinycrypt
+          # - nanopb # for ZMK Studio
 
     # --- imported projects pinned by pin-west; do not edit ---
     - name: cmsis # via zephyr (west.yml)

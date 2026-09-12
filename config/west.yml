@@ -53,10 +53,6 @@ manifest:
     - name: zmk-unicode
       path: modules/zmk/unicode
       revision: a1e3d3eed54dea800b5342a251eb3b83eee3b5ec # main (2026-08-18)
-    - name: zmk-rgbled-widget
-      url: https://github.com/caksoylar/zmk-rgbled-widget
-      path: modules/zmk/rgbled-widget
-      revision: main
 
     # Avoid downloading GBs of unused Zephyr modules. Remove this section to
     # restore the default (needed for less common hardware).
@@ -73,7 +69,6 @@ manifest:
           - lvgl  # imported independently by ZMK
           - mbedtls
           - tinycrypt
-          # - nanopb # for ZMK Studio
 
     # --- imported projects pinned by pin-west; do not edit ---
     - name: cmsis # via zephyr (west.yml)
@@ -115,6 +110,12 @@ manifest:
       revision: 6cb4c283e76209d59c45fbcb218800cd19e9339d
       path: modules/msgs/zmk-studio-messages
     # --- end of imported projects ---
+      
+    # --- Custom User Modules ---
+    - name: zmk-rgbled-widget
+      url: https://github.com/caksoylar/zmk-rgbled-widget
+      path: modules/zmk/rgbled-widget
+      revision: main
 
   self:
     path: config

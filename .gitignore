@@ -1,12 +1,19 @@
+# ZMK Workspace & Local Build Outputs
 .build
 .direnv
 .west
-modules
+build/
 firmware
+modules
 zephyr
 zmk
+
+# Keymap Drawer Artifacts
 draw/base.yaml
 draw/overview.yaml
-Zone.Identifier
+
+# OS & File System Artifacts
+*:Zone.Identifier
 Thumbs.db
 desktop.ini
+.DS_Store
